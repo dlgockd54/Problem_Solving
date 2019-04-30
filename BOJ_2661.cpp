@@ -7,7 +7,7 @@
 
 using namespace std;
 
-bool isGoodPermutation(string str) {
+bool isGoodProgression(string str) {
     int length = str.length();
 
     for(int newStrLength = 1; newStrLength <= length / 2; newStrLength++) {
@@ -28,7 +28,7 @@ int solution(int N, string str) {
     int result = 0;
 
     if(str.length() == N) {
-        if(isGoodPermutation(str)) {
+        if(isGoodProgression(str)) {
             cout << str << endl;
 
             result = 1;
@@ -36,7 +36,7 @@ int solution(int N, string str) {
     }
     else {
         for(int i = 1; i <= 3; i++) {
-            if(isGoodPermutation(str + to_string(i))) {
+            if(isGoodProgression(str + to_string(i))) {
                 if(solution(N, str + to_string(i))) {
                     result = 1;
 
