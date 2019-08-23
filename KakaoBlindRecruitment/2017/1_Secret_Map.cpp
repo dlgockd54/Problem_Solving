@@ -5,39 +5,47 @@
 
 using namespace std;
 
-void printResult(int n, int length) {
+vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
     string nToStr = "";
+    vector<string> answer;
 
-    while (n > 0) {
-        nToStr += (n % 2 == 1) ? "#" : " ";
+    for (int i = 0; i < n; i++) {
+        int orValue = arr1[i] | arr2[i];
 
-        n /= 2;
-    }
+        while (orValue > 0) {
+            nToStr += (orValue % 2 == 1) ? "#" : " ";
 
-    reverse(nToStr.begin(), nToStr.end());
-
-    if (nToStr.length() < length) {
-        int numOfSpace = length - nToStr.length();
-
-        for (int i = 0; i < numOfSpace; i++) {
-            nToStr = " " + nToStr;
+            orValue /= 2;
         }
+
+        reverse(nToStr.begin(), nToStr.end());
+
+        if (nToStr.length() < n) {
+            int length = nToStr.length();
+            int numOfSpace = n - length;
+
+            for (int j = 0; j < numOfSpace; j++) {
+                nToStr = " " + nToStr;
+            }
+        }
+
+        answer.push_back(nToStr);
+
+        nToStr = "";
     }
 
-    cout << nToStr << endl;
+    return answer;
 }
 
 int main() {
     int n;
     vector<int> arr1 = {9, 20, 28, 18, 11};
     vector<int> arr2 = {30, 1, 21, 17, 28};
+    vector<string> result = solution(arr1.size(), arr1, arr2);
 
     n = arr1.size();
-
     for (int i = 0; i < n; i++) {
-        int orResult = arr1[i] | arr2[i];
-
-        printResult(orResult, n);
+        cout << result[i] << endl;
     }
 
     cout << endl;
@@ -46,11 +54,10 @@ int main() {
     arr2 = {27, 56, 19, 14, 14, 10};
 
     n = arr1.size();
+    result = solution(n, arr1, arr2);
 
     for (int i = 0; i < n; i++) {
-        int orResult = arr1[i] | arr2[i];
-
-        printResult(orResult, n);
+        cout << result[i] << endl;
     }
 
     return 0;
