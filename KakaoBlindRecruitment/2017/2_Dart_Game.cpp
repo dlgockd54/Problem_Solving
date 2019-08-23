@@ -5,24 +5,24 @@
 
 using namespace std;
 
-int calculatePoint(string str) {
+int calculatePoint(string dartResult) {
     int answer = 0;
-    int length = str.length();
+    int length = dartResult.length();
 
-    answer += (str[0] - '0');
+    answer += (dartResult[0] - '0');
 
     for (int i = 1; i < length; i++) {
-        if (str[i] == '0') {
+        if (dartResult[i] == '0') {
             answer *= 10;
-        } else if (str[i] == '*') {
+        } else if (dartResult[i] == '*') {
             answer *= 2;
-        } else if (str[i] == '#') {
+        } else if (dartResult[i] == '#') {
             answer *= -1;
-        } else if (str[i] == 'S') {
+        } else if (dartResult[i] == 'S') {
             answer = (int) pow(answer, 1);
-        } else if (str[i] == 'D') {
+        } else if (dartResult[i] == 'D') {
             answer = (int) pow(answer, 2);
-        } else if (str[i] == 'T') {
+        } else if (dartResult[i] == 'T') {
             answer = (int) pow(answer, 3);
         }
     }
